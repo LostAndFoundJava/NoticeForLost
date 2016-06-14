@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.itcast.ssm.mapper.NflPostsMapper" >
-  <resultMap id="BaseResultMap" type="cn.itcast.ssm.po.NflPosts" >
+<mapper namespace="com.nfl.mapper.NflPostsMapper" >
+  <resultMap id="BaseResultMap" type="com.nfl.pojo.NflPosts" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="post_ts" property="postTs" jdbcType="TIMESTAMP" />
@@ -10,7 +10,7 @@
     <result column="like_count" property="likeCount" jdbcType="INTEGER" />
     <result column="share_count" property="shareCount" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="cn.itcast.ssm.po.NflPostsWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nfl.pojo.NflPostsWithBLOBs" extends="BaseResultMap" >
     <result column="post_content" property="postContent" jdbcType="LONGVARCHAR" />
     <result column="post_excerpt" property="postExcerpt" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -78,7 +78,7 @@
   <sql id="Blob_Column_List" >
     post_content, post_excerpt
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.itcast.ssm.po.NflPostsExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nfl.pojo.NflPostsExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,7 +94,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.itcast.ssm.po.NflPostsExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nfl.pojo.NflPostsExample" >
     select
     <if test="distinct" >
       distinct
@@ -120,13 +120,13 @@
     delete from nfl_posts
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.itcast.ssm.po.NflPostsExample" >
+  <delete id="deleteByExample" parameterType="com.nfl.pojo.NflPostsExample" >
     delete from nfl_posts
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.itcast.ssm.po.NflPostsWithBLOBs" >
+  <insert id="insert" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
     insert into nfl_posts (id, user_id, post_ts, 
       post_status, comment_count, like_count, 
       share_count, post_content, post_excerpt
@@ -136,7 +136,7 @@
       #{shareCount,jdbcType=INTEGER}, #{postContent,jdbcType=LONGVARCHAR}, #{postExcerpt,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.itcast.ssm.po.NflPostsWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
     insert into nfl_posts
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -197,7 +197,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.itcast.ssm.po.NflPostsExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.nfl.pojo.NflPostsExample" resultType="java.lang.Integer" >
     select count(*) from nfl_posts
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -266,7 +266,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.ssm.po.NflPostsWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
     update nfl_posts
     <set >
       <if test="userId != null" >
@@ -296,7 +296,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.itcast.ssm.po.NflPostsWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
     update nfl_posts
     set user_id = #{userId,jdbcType=INTEGER},
       post_ts = #{postTs,jdbcType=TIMESTAMP},
@@ -308,7 +308,7 @@
       post_excerpt = #{postExcerpt,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.itcast.ssm.po.NflPosts" >
+  <update id="updateByPrimaryKey" parameterType="com.nfl.pojo.NflPosts" >
     update nfl_posts
     set user_id = #{userId,jdbcType=INTEGER},
       post_ts = #{postTs,jdbcType=TIMESTAMP},

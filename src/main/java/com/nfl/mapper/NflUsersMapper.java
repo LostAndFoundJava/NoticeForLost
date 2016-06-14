@@ -1,12 +1,9 @@
 package com.nfl.mapper;
 
-
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.nfl.pojo.NflUsers;
 import com.nfl.pojo.NflUsersExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface NflUsersMapper {
     int countByExample(NflUsersExample example);

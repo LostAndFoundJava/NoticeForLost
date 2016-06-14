@@ -1,12 +1,9 @@
 package com.nfl.mapper;
 
-
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.nfl.pojo.NflPhotos;
 import com.nfl.pojo.NflPhotosExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface NflPhotosMapper {
     int countByExample(NflPhotosExample example);

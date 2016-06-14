@@ -1,12 +1,9 @@
 package com.nfl.mapper;
 
-
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.nfl.pojo.NflPostTag;
 import com.nfl.pojo.NflPostTagExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface NflPostTagMapper {
     int countByExample(NflPostTagExample example);
