@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="/com.nfl/hello/adduser" method="post">
+    <form action="/nfl/hello/adduser" method="post">
     <tr>
     <td>name:</td>
     <td><input type="text" name="userName"></td>

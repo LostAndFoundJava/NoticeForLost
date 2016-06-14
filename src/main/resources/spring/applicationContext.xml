@@ -14,7 +14,7 @@
      <!-- 加载配置文件 :-->
      <!-- xmlns:context -->
      
-	<context:property-placeholder location="classpath:/spring/property.properties" />
+	<context:property-placeholder location="classpath:property.properties" />
 
 	<!-- 数据源，使用dbcp -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
