@@ -16,6 +16,7 @@
      
     <context:property-placeholder location="classpath:property.properties" />
 
+
 	<!-- 数据源，使用dbcp -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
