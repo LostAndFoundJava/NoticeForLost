@@ -31,11 +31,22 @@
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j-version}</version>
     </dependency>
+
     <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.1.0</version>
     </dependency>
+    <dependency>
+    	<groupId>javax.mail</groupId>
+    	<artifactId>javax.mail-api</artifactId>
+    	<version>1.5.5</version>
+	</dependency>
+	<dependency>
+    	<groupId>com.sun.mail</groupId>
+    	<artifactId>javax.mail</artifactId>
+    	<version>1.5.5</version>
+	</dependency>
     <dependency>
        <groupId>org.apache.commons</groupId>
        <artifactId>commons-lang3</artifactId>
@@ -79,36 +90,48 @@
         <artifactId>spring-web</artifactId>
         <version>${spring.version}</version>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-core</artifactId>
         <version>${spring.version}</version>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
         <version>4.1.1.RELEASE</version>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-beans</artifactId>
         <version>${spring.version}</version>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
         <version>${spring.version}</version>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
         <version>${spring.version}</version>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
     </dependency>
+    
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${spring.version}</version>
+	</dependency>	
     <!--测试-->
     <dependency>
         <groupId>junit</groupId>
@@ -116,13 +139,13 @@
         <version>4.11</version>
         <scope>test</scope>
     </dependency>
+    
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
         <version>4.1.1.RELEASE</version>
         <scope>test</scope>
     </dependency>
-
 
 	<dependency>
     	<groupId>cglib</groupId>
@@ -136,6 +159,17 @@
     	<version>3.0</version>
 	</dependency>
 	
+    <dependency>
+		<groupId>commons-codec</groupId>
+		<artifactId>commons-codec</artifactId>
+		<version>1.5</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.antlr</groupId>
+		<artifactId>ST4</artifactId>
+		<version>4.0.7</version>
+	</dependency>
 
     <dependency>
       <groupId>javax</groupId>
@@ -144,22 +178,13 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.glassfish.web</groupId>
-      <artifactId>javax.servlet.jsp.jstl</artifactId>
-      <version>1.2.2</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+      <type>jar</type>
     </dependency>
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.web</groupId>
-      <artifactId>javax.servlet.jsp.jstl</artifactId>
-      <version>1.2.2</version>
-    </dependency>
-  </dependencies>
+  </dependencies>  
+  
   <build>
     <plugins>
       <plugin>
