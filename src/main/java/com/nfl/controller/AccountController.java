@@ -23,6 +23,7 @@ import com.nfl.pojo.NflUsersCustom;
 import com.nfl.service.MailService;
 import com.nfl.serviceImp.UserServiceImp;
 import com.nfl.util.Property;
+import com.nfl.util.UserDic;
 
 @Controller
 @RequestMapping("/account")
@@ -85,9 +86,16 @@ public class AccountController {
 		}
 		return mav;
 	}
+	
+	
 	@RequestMapping("/activation/mail/send")
-	public ModelAndView actication(@RequestParam("email") String email) {
+	public ModelAndView activation(@RequestParam("email") String email) {
 		ModelAndView mav = new ModelAndView();
+		NflUsers user=userService.findByEmail(email);
+		if(user.getUserStatus()==UserDic.STATUS_USER_NORMAL){
+			mav.setViewName("account/login");
+			return mav;
+		}
 		mav.setViewName("account/activation");
 		initStatus(mav);
 		mav.addObject("email", email);
@@ -105,6 +113,7 @@ public class AccountController {
 					(String) map.get("activationKey"));
 			ret.put("status", Property.SUCCESS_ACCOUNT_ACTIVATION_EMAIL_RESEND);
 		}
+		System.out.println("status is"+ret.get("status"));
 		return ret;
 	}
 		

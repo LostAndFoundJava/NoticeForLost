@@ -74,7 +74,12 @@ $(document).ready(function(){
 		.success(function(data){
 			$(that).removeClass('loading');
 			if(data.status == SUCCESS_ACCOUNT_ACTIVATION_EMAIL_RESEND){
+				$(that).removeClass('loading');
 				$(that).text('已发送');
+			}
+			if(data.status == ERROR_ACCOUNT_EXIST){
+				$(that).removeClass('loading');
+				$(that).text('账户已激活');
 			}
 		})
 

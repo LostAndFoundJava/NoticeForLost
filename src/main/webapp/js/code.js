@@ -52,7 +52,7 @@
 	var ERROR_ACCOUNT_INACTIVE= "004003";			//账户待激活
 	var ERROR_ACCOUNT_LOCK= "004004";			//账户已锁定
 	var ERROR_ACCOUNT_CANCELLED= "004005";			//账户已注销
-	var ERROR_ACCOUNT_EXIST= "004006";			//账户已注销
+	var ERROR_ACCOUNT_EXIST= "004006";			//账户已激活
 	var ERROR_ACCOUNT_NOTLOGIN = "004007";
 	
 	var ERROR_POST_EMPTY = "005000";				//post相关字段空
