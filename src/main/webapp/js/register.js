@@ -10,7 +10,6 @@ $(document).ready(function(){
 		var email = $.trim($('#email').val());
 		var password = $('#password').val();
 		var cfmPwd = $('#cfmPwd').val();
-		alert(cfmPwd);
 		var user={"userName":username, "userEmail":email, "userPwd":password, "confirmPwd":cfmPwd, };
 		
 		$.ajax({

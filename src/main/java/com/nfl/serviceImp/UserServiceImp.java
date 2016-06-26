@@ -1,7 +1,8 @@
 package com.nfl.serviceImp;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nfl.mapper.NflUsersMapper;
-import com.nfl.pojo.NflPhotosExample;
+
 import com.nfl.pojo.NflUsers;
 import com.nfl.pojo.NflUsersCustom;
 import com.nfl.pojo.NflUsersExample;
@@ -40,7 +41,7 @@ public class UserServiceImp implements UserService {
             if(!ValidateEmail(email))
                 return Property.ERROR_EMAIL_FORMAT;
             //5 email exist?
-            NflUsersCustom exist_user = (NflUsersCustom)findByEmail(email);
+            NflUsers exist_user = findByEmail(email);
             
             if(exist_user!= null) {
             	
@@ -126,5 +127,60 @@ public class UserServiceImp implements UserService {
 			}
 			return result;
 		}
+	@Override
+	public String activateUser(String email, String key) throws Exception {
+		NflUsers user = findByEmail(email);
+		if(user == null)
+			return Property.ERROR_ACCOUNT_ACTIVATION_NOTEXIST;
+		else {
+			
+			if(user.getUserStatus() == UserDic.STATUS_USER_INACTIVE ){
+				if(user.getUserActivationkey().equals(key)){
+					user.setUserActivationkey(null);
+					user.setUserStatus(UserDic.STATUS_USER_NORMAL);
+					userDao.updateByPrimaryKey(user);
+
+				}else {
+					return Property.ERROR_ACCOUNT_ACTIVATION_EXPIRED;
+				}
+			} else{
+				if(user.getUserStatus() == UserDic.STATUS_USER_NORMAL){
+					return Property.ERROR_ACCOUNT_EXIST;
+				} else{
+					return Property.ERROR_ACCOUNT_ACTIVATION;
+				}
+				
+			}
+		}
+		return Property.SUCCESS_ACCOUNT_ACTIVATION;
+	}
+	@Override
+	public Map<String, Object> updateActivationKey(String email) {
+		NflUsers user = findByEmail(email);
+		String status = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(user == null){
+			status = Property.ERROR_EMAIL_NOT_REG;
+		}
+		
+		if(UserDic.STATUS_USER_INACTIVE == user.getUserStatus()){
+			//2 gen activation key
+			String activationKey = CipherUtil.generateActivationUrl(email, new Date().toString());
+			//update the activationKey in databese
+			user.setUserActivationkey(activationKey);
+			NflUsersExample nue=new NflUsersExample();
+			NflUsersExample.Criteria nuec=nue.createCriteria();
+			nuec.andUserEmailEqualTo(email);
+			userDao.updateByExampleSelective(user,nue);
+	
+			status = Property.SUCCESS_ACCOUNT_ACTIVATION_KEY_UPD;
+			map.put("activationKey", activationKey);
+		} else {
+			if(UserDic.STATUS_USER_NORMAL == user.getUserStatus())
+				status = Property.ERROR_ACCOUNT_EXIST; //已激活
+		}
+		map.put("status", status);
+		return map;
+	}
 
 }
