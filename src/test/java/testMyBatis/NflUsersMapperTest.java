@@ -18,9 +18,7 @@ public class NflUsersMapperTest {
 
 	@Test
 	public void test() {
-		NflUsers user=new NflUsers();
-		user.setUserName("cc1");
-		us.addUser(user);
+	
 	}
 
 }
