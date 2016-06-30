@@ -1,19 +1,19 @@
 $(document).ready(function(){
-	$('#loginbtn').live('click', function() {
+	/*$('#loginbtn').live('click', function() {*/
+	$('#loginbtn').click(function() {
 		var that = this;
 		$(this).addClass('loading');
 		var email = $.trim($('#email').val());
 		var password = $('#password').val();
 		var error_area=$('#error');
 		var err_msg="";
-
 		$(error_area).find('ul:first').text('');
 		$(error_area).addClass('hidden');
 		$('#emailTip').text('');
 		$('#paswordTip').text('');
 		$('#email').parent('div.field:first').removeClass('error');
 		$('#password').parent('div.field:first').removeClass('error');
-
+		alert(email);
 		$.ajax({
 			url: basePath+'/account/login',
 			type: 'POST',
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	});
 
 	
-	$('#registerbtn').live('click', function(){
+	$('#registerBtn').on('click', function(){
 		self.location = basePath + '/account/register';
 	});
 
