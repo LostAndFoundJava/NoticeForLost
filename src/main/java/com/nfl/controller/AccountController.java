@@ -3,6 +3,7 @@ package com.nfl.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nfl.pojo.NflUsers;
 import com.nfl.pojo.NflUsersCustom;
+import com.nfl.search.IndexService;
+import com.nfl.search.UserIndexService;
 import com.nfl.service.MailService;
 import com.nfl.serviceImp.UserServiceImp;
 import com.nfl.util.Property;
@@ -35,6 +38,9 @@ public class AccountController {
 	@Qualifier("mailService")
 	private MailService mailService;
 	
+	@Autowired
+	@Qualifier("userIndexService")
+	private IndexService<NflUsers> userIndexService;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
@@ -52,6 +58,9 @@ public class AccountController {
             mailService.sendAccountActivationEmail(user.getUserEmail(), map.get("activationKey"));
         }
         map.put("status", status);
+        
+        NflUsers user1 = userService.findByEmail(user.getUserEmail());
+		userIndexService.add(user1);
         return map;
     }
 	
@@ -61,6 +70,7 @@ public class AccountController {
 		ModelAndView mav = new ModelAndView();
 
 		String status = null;
+		
 		try {
 			status = userService.activateUser(email, URLDecoder.decode(key, "utf-8"));
 		} catch (UnsupportedEncodingException e) {
@@ -70,9 +80,8 @@ public class AccountController {
 				|| Property.ERROR_ACCOUNT_EXIST.equals(status)) {
 			mav.setViewName("redirect:/guide");
 			//这里和搜索有关系
-//			NflUsers user = userService.findByEmail(email);
-//			session.setAttribute("user", user);
-//			userService.indexUser(user);
+/*			NflUsers user = userService.findByEmail(email);
+			userIndexService.add(user);*/
 		} else {
 			mav.setViewName("account/activation");
 			mav.addObject("status", status);
@@ -83,6 +92,11 @@ public class AccountController {
 					Property.ERROR_ACCOUNT_ACTIVATION_EXPIRED);
 			mav.addObject("ERROR_ACCOUNT_ACTIVATION",
 					Property.ERROR_ACCOUNT_ACTIVATION);
+		}
+		UserIndexService uis = (UserIndexService)userIndexService;
+		List<Integer> list = uis.findUserByName("cj");
+		for(Integer i : list){
+			System.out.println(i);
 		}
 		return mav;
 	}
@@ -102,6 +116,7 @@ public class AccountController {
 		return mav;
 	}
 	
+	@ResponseBody
 	@RequestMapping("/activation/mail/resend")
 	public Map<String,String> resend(@RequestParam("email") String email){
 		Map<String, String> ret = new HashMap<String, String>();

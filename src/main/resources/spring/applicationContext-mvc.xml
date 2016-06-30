@@ -15,6 +15,7 @@
     <context:component-scan base-package="com.nfl.dto"/>
     <context:component-scan base-package="com.nfl.service"/>
     <context:component-scan base-package="com.nfl.serviceImp"/>
+    <context:component-scan base-package="com.nfl.search"/>
     
     <mvc:resources location="/WEB-INF/pages/" mapping="/pages/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>

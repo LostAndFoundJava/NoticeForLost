@@ -29,7 +29,7 @@
 					</div>
 					<div class="ui divider"></div>
 					<div class="content">
-						没有收到？<a href="#" class="ui small primary button" id="resend" email="${email}">重新发送</a> 
+						没有收到？<a href="javascript:;" class="ui small primary button" id="resend" email="${email}">重新发送</a> 
 					
 					</div>
 				</c:if>

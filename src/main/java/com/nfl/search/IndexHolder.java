@@ -9,6 +9,7 @@ import java.util.Properties;
 import javax.annotation.PreDestroy;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
@@ -31,12 +32,13 @@ public class IndexHolder {
 	private static IndexSearcher indexSearcher;
 	
 	static{
-		String classpath = IndexHolder.class.getClassLoader().getResource("").getPath();
+		String classpath = IndexHolder.class.getResource("").getPath();
+		System.out.println("xxxxx");
+		classpath = classpath.split("/com")[0];
+		System.out.println(classpath);
 		Properties prop = new Properties();  
-		System.out.println("我在这儿初始化！！package com.lvwang.osf.search;");
-//		classpath="/F:/java/TomCat/apache-tomcat-7.0.42/webapps/com.lvwang.osf/WEB-INF/classes";
 		try {
-			InputStream in = new FileInputStream(classpath+"/spring/property.properties");  
+			InputStream in = new FileInputStream(classpath+"/property.properties");  
 			prop.load(in);
 			indexDir = prop.getProperty("index.dir");
 			System.out.println(indexDir);
@@ -44,14 +46,15 @@ public class IndexHolder {
 			if(!index_dir.exists() && !index_dir.isDirectory()) {
 				index_dir.mkdir();
 			} 
-			
+			//创建索引路径
 			Directory dir = FSDirectory.open(index_dir);
-			//Analyzer analyzer = new StandardAnalyzer();
-			Analyzer analyzer = new IKAnalyzer();
+			Analyzer analyzer = new StandardAnalyzer();
+			//Analyzer analyzer = new IKAnalyzer();
+			//写索引
 			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_4_10_4, analyzer);
 			indexWriter = new IndexWriter(dir, iwc);
 			indexWriter.commit();
-			
+			//读索引
 			indexReader = DirectoryReader.open(FSDirectory.open(index_dir));
 			indexSearcher = new IndexSearcher(indexReader);
 		} catch (IOException e) {
