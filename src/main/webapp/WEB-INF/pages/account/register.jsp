@@ -17,10 +17,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/style.css">
 
-<script src="<%=request.getContextPath()%>/js/jquery-3.0.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/basic.js"></script>
 <script src="<%=request.getContextPath()%>/js/code.js"></script>
-<script src="<%=request.getContextPath()%>/js/register.js"></script>
 </head>
 <body>
 	<%@ include file="../topbar.jsp"%>

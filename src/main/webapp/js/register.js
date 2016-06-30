@@ -11,17 +11,18 @@ $(document).ready(function(){
 		var password = $('#apassword').val();
 		var cfmPwd = $('#acfmPwd').val();
 		var user={"userName":username, "userEmail":email, "userPwd":password, "confirmPwd":cfmPwd, };
-		
 		$.ajax({
 			url: basePath+'/account/register',
 			type: 'POST',
 			dataType: 'json',
 			contentType: "application/json",
 			data: JSON.stringify(user),
+			
 			success: function(data) {
 				alert(data.status)
 				$(that).removeClass('loading');
 				if(data.status == SUCCESS_ACCOUNT_REG) {
+					alert("陈宫了");
 					self.location = basePath + '/account/activation/mail/send?email='+email;
 				} else { //error
 					var status = data.status;
@@ -31,6 +32,7 @@ $(document).ready(function(){
 								username = '';
 								$('#usernameTip').text('用户名已存在');
 							} else if(status == '000004') { //user name empty
+								alert("没有用户名");
 								$('#usernameTip').text('请输入用户名');
 							}
 							$('#ausername').parent('div.field:first').addClass('error');
@@ -77,6 +79,7 @@ $(document).ready(function(){
 				} 
 
 			}
-		})	
+		})
+		
 	});
 })

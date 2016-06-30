@@ -5,8 +5,10 @@
 	href="<%=request.getContextPath()%>/css/menu.css">
 <link href="<%=request.getContextPath()%>/css/bootstrap.min.css"
 	rel="stylesheet">
+<script src="<%=request.getContextPath() %>/js/jquery-3.0.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<%-- <script src="<%=request.getContextPath() %>/js/jquery.js"></script> --%>
+<script src="<%=request.getContextPath()%>/js/register.js"></script>
+<script src="<%=request.getContextPath()%>/js/login.js"></script>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="nav-container container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->

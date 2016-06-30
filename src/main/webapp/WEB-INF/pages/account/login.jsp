@@ -11,10 +11,8 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/semantic.css">
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/style.css">
 	
-	<script src="<%=request.getContextPath() %>/js/jquery.js"></script>
 	<script src="<%=request.getContextPath() %>/js/basic.js"></script>
 	<script src="<%=request.getContextPath() %>/js/code.js"></script>
-	<script src="<%=request.getContextPath() %>/js/login.js"></script>
 </head>
 <body>
 	<%@ include file="../topbar.jsp" %>
@@ -46,10 +44,9 @@
 							</div>	
 						</div>
 					</div>					
-
-
 			</div>
 		</div>
 	</div>
 </body>
+
 </html>

@@ -129,7 +129,7 @@ public class AccountController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Map<String, Object> login(@RequestParam("email") String email,
 			@RequestParam("password") String password, HttpSession session) {
-
+		System.out.println("xxxxx");
 		Map<String, Object> ret = userService.login(email, password);
 		String status = (String) ret.get("status");
 		if (Property.SUCCESS_ACCOUNT_LOGIN.equals(status)) {
