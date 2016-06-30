@@ -3,7 +3,7 @@
 	 * rules:
 	 * 第1位标示类别(0:错误(ERROR); 1:成功(SUCCESS);)
 	 * 第2-3位标示对象(00:username;
-	 * 			   01:emai;
+	 * 			   01:email;
 	 * 			   02:password;
 	 * 			   03:conformPassword
 	 * 			   04:account
@@ -53,7 +53,7 @@
 	var ERROR_ACCOUNT_LOCK= "004004";			//账户已锁定
 	var ERROR_ACCOUNT_CANCELLED= "004005";			//账户已注销
 	var ERROR_ACCOUNT_EXIST= "004006";			//账户已激活
-	var ERROR_ACCOUNT_NOTLOGIN = "004007";
+	var ERROR_ACCOUNT_NOTLOGIN = "004007";		//账户已退出
 	
 	var ERROR_POST_EMPTY = "005000";				//post相关字段空
 	var ERROR_POST_STATUS = "005001";				//post状态异常

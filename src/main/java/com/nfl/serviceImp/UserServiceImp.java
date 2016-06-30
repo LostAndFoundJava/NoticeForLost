@@ -89,7 +89,7 @@ public class UserServiceImp implements UserService {
       
         String activationKey = CipherUtil.generateActivationUrl(email, password);
         user.setUserActivationkey(activationKey);
-        
+        user.setUserPwd(CipherUtil.generatePassword(password));
         int id =userDao.insert(user);
         
         map.put("id", String.valueOf(id));
@@ -97,6 +97,8 @@ public class UserServiceImp implements UserService {
         return Property.SUCCESS_ACCOUNT_REG;
         
     }
+	
+	
 	 private Object findByUsername(String username) {
 		 NflUsersExample nue=new NflUsersExample();
 		 NflUsersExample.Criteria nuec=nue.createCriteria();
@@ -182,5 +184,48 @@ public class UserServiceImp implements UserService {
 		map.put("status", status);
 		return map;
 	}
+	
+	public Map<String, Object> login(String email, String password) {
+		Map<String, Object> ret = new HashMap<String, Object>();
+		//1 empty check
+		if(email == null || email.length() <= 0) {
+			ret.put("status", Property.ERROR_EMAIL_EMPTY);
+			return ret;
+		}
+			
+		if(password == null || password.length() <= 0){
+			ret.put("status", Property.ERROR_PWD_EMPTY);
+			return ret;
+		}
+			
+		
+		//2 ValidateEmail 
+		if(!ValidateEmail(email)) {
+			ret.put("status", Property.ERROR_EMAIL_FORMAT);
+			return ret;
+		}
 
+		//3 email exist?
+		NflUsers user = findByEmail(email);
+		if(user == null) {
+			ret.put("status", Property.ERROR_EMAIL_NOT_REG);
+			return ret;
+		}
+		else {
+			//4 check user status
+			if(UserDic.STATUS_USER_NORMAL != user.getUserStatus() ){
+				ret.put("status", user.getUserStatus());
+				return ret;
+			}
+		}
+		
+		//5 password validate
+		if(!CipherUtil.validatePassword(user.getUserPwd(),password)) {
+			ret.put("status", Property.ERROR_PWD_DIFF);
+			return ret;
+		}
+		ret.put("status", Property.SUCCESS_ACCOUNT_LOGIN);
+		ret.put("user_email", user.getUserEmail());
+		return ret;
+	}
 }

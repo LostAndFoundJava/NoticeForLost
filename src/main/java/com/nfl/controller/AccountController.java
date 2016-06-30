@@ -35,9 +35,15 @@ public class AccountController {
 	@Qualifier("mailService")
 	private MailService mailService;
 	
-	
+	/**
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register() {
+    public String register(HttpSession session) {
+		if(session.getAttribute("user_email")!=null)
+			return "redirect:/guide";
         return "account/register";
     }
 
@@ -102,6 +108,7 @@ public class AccountController {
 		return mav;
 	}
 	
+	@ResponseBody
 	@RequestMapping("/activation/mail/resend")
 	public Map<String,String> resend(@RequestParam("email") String email){
 		Map<String, String> ret = new HashMap<String, String>();
@@ -116,7 +123,21 @@ public class AccountController {
 		System.out.println("status is"+ret.get("status"));
 		return ret;
 	}
-		
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Map<String, Object> login(@RequestParam("email") String email,
+			@RequestParam("password") String password, HttpSession session) {
+
+		Map<String, Object> ret = userService.login(email, password);
+		String status = (String) ret.get("status");
+		if (Property.SUCCESS_ACCOUNT_LOGIN.equals(status)) {
+			session.setAttribute("user_email",ret.get("user_email"));
+			session.setAttribute("user_name",ret.get("user_name"));
+		}
+		return ret;
+	}
 
 	private void initStatus(ModelAndView mav) {
 		mav.addObject("ERROR_ACCOUNT_ACTIVATION_NOTEXIST",
@@ -125,5 +146,12 @@ public class AccountController {
 				Property.ERROR_ACCOUNT_ACTIVATION_EXPIRED);
 		mav.addObject("ERROR_ACCOUNT_ACTIVATION",
 				Property.ERROR_ACCOUNT_ACTIVATION);
+	}
+	
+
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 }

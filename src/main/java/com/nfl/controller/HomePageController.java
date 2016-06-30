@@ -13,15 +13,22 @@ import com.nfl.pojo.NflUsers;
 @Controller
 public class HomePageController {
 	
+	@RequestMapping("/")
+	public ModelAndView showHomePage(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		if(session.getAttribute("user_email") != null){
+			mav.setViewName("redirect:/guide");
+			return mav;
+		}
+		mav.setViewName("welcome");
+		return mav;
+		
+	}
 	
 	@RequestMapping("/guide")
 	public ModelAndView guide(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("guide");
-		
-		NflUsers user = (NflUsers) session.getAttribute("user");
-		
-		
 		return mav;
 	}
 }
