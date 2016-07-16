@@ -214,8 +214,11 @@ public class UserServiceImp implements UserService {
 		else {
 			//4 check user status
 			if(UserDic.STATUS_USER_NORMAL != user.getUserStatus() ){
-				ret.put("status", user.getUserStatus()+"");
-				return ret;
+				if(UserDic.STATUS_USER_INACTIVE==user.getUserStatus())
+					ret.put("status", Property.ERROR_ACCOUNT_INACTIVE);
+				if(UserDic.STATUS_USER_LOCK==user.getUserStatus())
+					ret.put("status", Property.ERROR_ACCOUNT_LOCK);
+					
 			}
 		}
 		

@@ -22,6 +22,7 @@ $(document).ready(function(){
 				   
 			success:function(data) {
 				$(that).removeClass('loading');
+				alert(data.status);
 				if(data.status==SUCCESS_ACCOUNT_LOGIN){
 					//self.location = basePath + '/';
 					location.reload();

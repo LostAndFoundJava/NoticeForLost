@@ -10,5 +10,9 @@ public class PostController {
 	
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
+	public String createPost() {
+		return "post/create";
+	}
 	
+//	@RequestMapping(value='/create',method)
 }
