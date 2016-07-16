@@ -95,8 +95,13 @@ public class AccountController {
 	
 	
 	@RequestMapping("/activation/mail/send")
-	public ModelAndView activation(@RequestParam("email") String email) {
+	public ModelAndView activation(@RequestParam("email") String email, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		//如果已登入，跳转到首页
+		if(session.getAttribute("user_email")!=null){
+			mav.setViewName("redirect:/guide");
+			return mav;			
+		}
 		NflUsers user=userService.findByEmail(email);
 		if(user.getUserStatus()==UserDic.STATUS_USER_NORMAL){
 			mav.setViewName("account/login");
@@ -111,6 +116,7 @@ public class AccountController {
 	@ResponseBody
 	@RequestMapping("/activation/mail/resend")
 	public Map<String,String> resend(@RequestParam("email") String email){
+		
 		Map<String, String> ret = new HashMap<String, String>();
 		Map<String, Object> map = userService.updateActivationKey(email);
 		ret.put("status", (String) map.get("status"));
@@ -129,7 +135,6 @@ public class AccountController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Map<String, Object> login(@RequestParam("email") String email,
 			@RequestParam("password") String password, HttpSession session) {
-		System.out.println("xxxxx");
 		Map<String, Object> ret = userService.login(email, password);
 		String status = (String) ret.get("status");
 		if (Property.SUCCESS_ACCOUNT_LOGIN.equals(status)) {

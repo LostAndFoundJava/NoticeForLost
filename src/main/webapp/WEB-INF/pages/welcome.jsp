@@ -16,10 +16,10 @@
   	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/welcome.css">
 	<style>
 	.section1 { background: url("<%=request.getContextPath() %>/img/background.png") no-repeat; background-size: cover;}
-	.section4 { background: url("<%=request.getContextPath() %>/img/gallery/8.jpg") no-repeat;
+	.section4 { background: url("<%=request.getContextPath() %>/img/8.jpg") no-repeat;
 				background-size: cover;}
 	</style>
-  	<script src="<%=request.getContextPath() %>/js/jquery.js"></script>
+  	<script src="<%=request.getContextPath() %>/js/jquery-3.0.0.min.js"></script>
   	<script src="<%=request.getContextPath() %>/js/jquery.fullPage.js"></script>
   	<script src="http://cdn.staticfile.org/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/semantic.js"></script>

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/menu.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/font-awesome.css">
 <link href="<%=request.getContextPath()%>/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.0.0.min.js"></script>
@@ -53,7 +55,14 @@
 							</div>
 						</div>
 					</li>
-
+					
+					<li>
+						
+						<a target="_blank" href="#" class="btn btn-default">
+  							<i class="fa fa-pencil-square-o fa-stack-2x" aria-hidden="true"></i>
+						</a>
+					
+</li>
 
 				</c:if>
 				<c:if test="${empty sessionScope.user_email}">
@@ -64,6 +73,7 @@
 						<button type="button" class="btn btn-default" class="active"
 							id="bg-gray" data-toggle="modal" data-target="#myModal">已有账号？登录</button>
 					</li>
+					
 
 				</c:if>
 			</ul>
