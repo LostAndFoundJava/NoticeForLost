@@ -3,21 +3,31 @@ package com.nfl.pojo;
 import java.util.Date;
 
 public class NflPosts {
-    private Integer id;
+    private Integer id;//Msg_id
 
-    private Integer userId;
+    private Integer userId;////User_id
 
-    private Date postTs;
+    private Date postTs;//Time
 
-    private Integer postStatus;
+    private Integer postStatus;//原创，评论，转发
 
     private Integer commentCount;
 
     private Integer likeCount;
 
     private Integer shareCount;
+    
+    private String photoid;
+    
+    public String getPhotoid() {
+		return photoid;
+	}
 
-    public Integer getId() {
+	public void setPhotoid(String photoid) {
+		this.photoid = photoid;
+	}
+
+	public Integer getId() {
         return id;
     }
 
