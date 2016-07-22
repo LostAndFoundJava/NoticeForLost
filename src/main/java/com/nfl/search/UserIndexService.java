@@ -25,7 +25,7 @@ import com.nfl.pojo.NflUsers;
 
 @Service("userIndexService")
 public class UserIndexService implements IndexService<NflUsers>{
-
+ 
 	public void add(NflUsers user) {
 		Document doc = new Document();
 		//doc.add(new StringField("user_email", user.getUserEmail(), Field.Store.YES));

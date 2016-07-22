@@ -7,11 +7,9 @@ public class NflPhotos {
 
     private String key;
 
-    private Integer albumId;
-
     private Date ts;
 
-    private String desc;
+    private Integer postId;
 
     public Integer getId() {
         return id;
@@ -29,14 +27,6 @@ public class NflPhotos {
         this.key = key == null ? null : key.trim();
     }
 
-    public Integer getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(Integer albumId) {
-        this.albumId = albumId;
-    }
-
     public Date getTs() {
         return ts;
     }
@@ -45,11 +35,11 @@ public class NflPhotos {
         this.ts = ts;
     }
 
-    public String getDesc() {
-        return desc;
+    public Integer getPostId() {
+        return postId;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 }

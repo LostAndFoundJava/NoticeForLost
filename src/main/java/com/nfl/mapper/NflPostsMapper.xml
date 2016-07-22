@@ -6,13 +6,13 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="post_ts" property="postTs" jdbcType="TIMESTAMP" />
     <result column="post_status" property="postStatus" jdbcType="INTEGER" />
+    <result column="post_type" property="postType" jdbcType="INTEGER" />
     <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
     <result column="like_count" property="likeCount" jdbcType="INTEGER" />
     <result column="share_count" property="shareCount" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.nfl.pojo.NflPostsWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nfl.pojo.NflPosts" extends="BaseResultMap" >
     <result column="post_content" property="postContent" jdbcType="LONGVARCHAR" />
-    <result column="post_excerpt" property="postExcerpt" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,10 +73,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, post_ts, post_status, comment_count, like_count, share_count
+    id, user_id, post_ts, post_status, post_type, comment_count, like_count, share_count
   </sql>
   <sql id="Blob_Column_List" >
-    post_content, post_excerpt
+    post_content
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nfl.pojo.NflPostsExample" >
     select
@@ -126,17 +126,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
+  <insert id="insert" parameterType="com.nfl.pojo.NflPosts" >
     insert into nfl_posts (id, user_id, post_ts, 
-      post_status, comment_count, like_count, 
-      share_count, post_content, post_excerpt
+      post_status, post_type, comment_count, 
+      like_count, share_count, post_content
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{postTs,jdbcType=TIMESTAMP}, 
-      #{postStatus,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, 
-      #{shareCount,jdbcType=INTEGER}, #{postContent,jdbcType=LONGVARCHAR}, #{postExcerpt,jdbcType=LONGVARCHAR}
+      #{postStatus,jdbcType=INTEGER}, #{postType,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, 
+      #{likeCount,jdbcType=INTEGER}, #{shareCount,jdbcType=INTEGER}, #{postContent,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPosts" >
     insert into nfl_posts
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -151,6 +151,9 @@
       <if test="postStatus != null" >
         post_status,
       </if>
+      <if test="postType != null" >
+        post_type,
+      </if>
       <if test="commentCount != null" >
         comment_count,
       </if>
@@ -162,9 +165,6 @@
       </if>
       <if test="postContent != null" >
         post_content,
-      </if>
-      <if test="postExcerpt != null" >
-        post_excerpt,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -180,6 +180,9 @@
       <if test="postStatus != null" >
         #{postStatus,jdbcType=INTEGER},
       </if>
+      <if test="postType != null" >
+        #{postType,jdbcType=INTEGER},
+      </if>
       <if test="commentCount != null" >
         #{commentCount,jdbcType=INTEGER},
       </if>
@@ -191,9 +194,6 @@
       </if>
       <if test="postContent != null" >
         #{postContent,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="postExcerpt != null" >
-        #{postExcerpt,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -218,6 +218,9 @@
       <if test="record.postStatus != null" >
         post_status = #{record.postStatus,jdbcType=INTEGER},
       </if>
+      <if test="record.postType != null" >
+        post_type = #{record.postType,jdbcType=INTEGER},
+      </if>
       <if test="record.commentCount != null" >
         comment_count = #{record.commentCount,jdbcType=INTEGER},
       </if>
@@ -230,9 +233,6 @@
       <if test="record.postContent != null" >
         post_content = #{record.postContent,jdbcType=LONGVARCHAR},
       </if>
-      <if test="record.postExcerpt != null" >
-        post_excerpt = #{record.postExcerpt,jdbcType=LONGVARCHAR},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -244,11 +244,11 @@
       user_id = #{record.userId,jdbcType=INTEGER},
       post_ts = #{record.postTs,jdbcType=TIMESTAMP},
       post_status = #{record.postStatus,jdbcType=INTEGER},
+      post_type = #{record.postType,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       share_count = #{record.shareCount,jdbcType=INTEGER},
-      post_content = #{record.postContent,jdbcType=LONGVARCHAR},
-      post_excerpt = #{record.postExcerpt,jdbcType=LONGVARCHAR}
+      post_content = #{record.postContent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,6 +259,7 @@
       user_id = #{record.userId,jdbcType=INTEGER},
       post_ts = #{record.postTs,jdbcType=TIMESTAMP},
       post_status = #{record.postStatus,jdbcType=INTEGER},
+      post_type = #{record.postType,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       share_count = #{record.shareCount,jdbcType=INTEGER}
@@ -266,7 +267,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nfl.pojo.NflPosts" >
     update nfl_posts
     <set >
       <if test="userId != null" >
@@ -277,6 +278,9 @@
       </if>
       <if test="postStatus != null" >
         post_status = #{postStatus,jdbcType=INTEGER},
+      </if>
+      <if test="postType != null" >
+        post_type = #{postType,jdbcType=INTEGER},
       </if>
       <if test="commentCount != null" >
         comment_count = #{commentCount,jdbcType=INTEGER},
@@ -290,22 +294,19 @@
       <if test="postContent != null" >
         post_content = #{postContent,jdbcType=LONGVARCHAR},
       </if>
-      <if test="postExcerpt != null" >
-        post_excerpt = #{postExcerpt,jdbcType=LONGVARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nfl.pojo.NflPostsWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nfl.pojo.NflPosts" >
     update nfl_posts
     set user_id = #{userId,jdbcType=INTEGER},
       post_ts = #{postTs,jdbcType=TIMESTAMP},
       post_status = #{postStatus,jdbcType=INTEGER},
+      post_type = #{postType,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       like_count = #{likeCount,jdbcType=INTEGER},
       share_count = #{shareCount,jdbcType=INTEGER},
-      post_content = #{postContent,jdbcType=LONGVARCHAR},
-      post_excerpt = #{postExcerpt,jdbcType=LONGVARCHAR}
+      post_content = #{postContent,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nfl.pojo.NflPosts" >
@@ -313,6 +314,7 @@
     set user_id = #{userId,jdbcType=INTEGER},
       post_ts = #{postTs,jdbcType=TIMESTAMP},
       post_status = #{postStatus,jdbcType=INTEGER},
+      post_type = #{postType,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       like_count = #{likeCount,jdbcType=INTEGER},
       share_count = #{shareCount,jdbcType=INTEGER}

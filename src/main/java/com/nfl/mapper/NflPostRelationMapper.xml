@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nfl.mapper.NflPostRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.nfl.pojo.NflPostRelation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="commented_msg_id" property="commentedMsgId" jdbcType="INTEGER" />
+    <result column="commented_user_id" property="commentedUserId" jdbcType="INTEGER" />
+    <result column="comment_msg_id" property="commentMsgId" jdbcType="INTEGER" />
+    <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER" />
+    <result column="comment_type" property="commentType" jdbcType="INTEGER" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+    <result column="page_index" property="pageIndex" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, commented_msg_id, commented_user_id, comment_msg_id, comment_user_id, comment_type, 
+    comment_time, page_index
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nfl.pojo.NflPostRelationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nfl_post_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nfl_post_relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nfl_post_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nfl.pojo.NflPostRelationExample" >
+    delete from nfl_post_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.nfl.pojo.NflPostRelation" >
+    insert into nfl_post_relation (id, commented_msg_id, commented_user_id, 
+      comment_msg_id, comment_user_id, comment_type, 
+      comment_time, page_index)
+    values (#{id,jdbcType=INTEGER}, #{commentedMsgId,jdbcType=INTEGER}, #{commentedUserId,jdbcType=INTEGER}, 
+      #{commentMsgId,jdbcType=INTEGER}, #{commentUserId,jdbcType=INTEGER}, #{commentType,jdbcType=INTEGER}, 
+      #{commentTime,jdbcType=TIMESTAMP}, #{pageIndex,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPostRelation" >
+    insert into nfl_post_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commentedMsgId != null" >
+        commented_msg_id,
+      </if>
+      <if test="commentedUserId != null" >
+        commented_user_id,
+      </if>
+      <if test="commentMsgId != null" >
+        comment_msg_id,
+      </if>
+      <if test="commentUserId != null" >
+        comment_user_id,
+      </if>
+      <if test="commentType != null" >
+        comment_type,
+      </if>
+      <if test="commentTime != null" >
+        comment_time,
+      </if>
+      <if test="pageIndex != null" >
+        page_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="commentedMsgId != null" >
+        #{commentedMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="commentedUserId != null" >
+        #{commentedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="commentMsgId != null" >
+        #{commentMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="commentUserId != null" >
+        #{commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="commentType != null" >
+        #{commentType,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageIndex != null" >
+        #{pageIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nfl.pojo.NflPostRelationExample" resultType="java.lang.Integer" >
+    select count(*) from nfl_post_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nfl_post_relation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentedMsgId != null" >
+        commented_msg_id = #{record.commentedMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentedUserId != null" >
+        commented_user_id = #{record.commentedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentMsgId != null" >
+        comment_msg_id = #{record.commentMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentUserId != null" >
+        comment_user_id = #{record.commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentType != null" >
+        comment_type = #{record.commentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentTime != null" >
+        comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pageIndex != null" >
+        page_index = #{record.pageIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nfl_post_relation
+    set id = #{record.id,jdbcType=INTEGER},
+      commented_msg_id = #{record.commentedMsgId,jdbcType=INTEGER},
+      commented_user_id = #{record.commentedUserId,jdbcType=INTEGER},
+      comment_msg_id = #{record.commentMsgId,jdbcType=INTEGER},
+      comment_user_id = #{record.commentUserId,jdbcType=INTEGER},
+      comment_type = #{record.commentType,jdbcType=INTEGER},
+      comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
+      page_index = #{record.pageIndex,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nfl.pojo.NflPostRelation" >
+    update nfl_post_relation
+    <set >
+      <if test="commentedMsgId != null" >
+        commented_msg_id = #{commentedMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="commentedUserId != null" >
+        commented_user_id = #{commentedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="commentMsgId != null" >
+        comment_msg_id = #{commentMsgId,jdbcType=INTEGER},
+      </if>
+      <if test="commentUserId != null" >
+        comment_user_id = #{commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="commentType != null" >
+        comment_type = #{commentType,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageIndex != null" >
+        page_index = #{pageIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nfl.pojo.NflPostRelation" >
+    update nfl_post_relation
+    set commented_msg_id = #{commentedMsgId,jdbcType=INTEGER},
+      commented_user_id = #{commentedUserId,jdbcType=INTEGER},
+      comment_msg_id = #{commentMsgId,jdbcType=INTEGER},
+      comment_user_id = #{commentUserId,jdbcType=INTEGER},
+      comment_type = #{commentType,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      page_index = #{pageIndex,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

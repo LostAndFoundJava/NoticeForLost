@@ -3,21 +3,25 @@ package com.nfl.pojo;
 import java.util.Date;
 
 public class NflPosts {
-    private Integer id;//Msg_id
+    private Integer id;
 
-    private Integer userId;////User_id
+    private Integer userId;
 
-    private Date postTs;//Time
+    private Date postTs;
 
-    private Integer postStatus;//原创，评论，转发
+    private Integer postStatus;
+
+    private Integer postType;
 
     private Integer commentCount;
 
     private Integer likeCount;
 
     private Integer shareCount;
-    
-	public Integer getId() {
+
+    private String postContent;
+
+    public Integer getId() {
         return id;
     }
 
@@ -49,6 +53,14 @@ public class NflPosts {
         this.postStatus = postStatus;
     }
 
+    public Integer getPostType() {
+        return postType;
+    }
+
+    public void setPostType(Integer postType) {
+        this.postType = postType;
+    }
+
     public Integer getCommentCount() {
         return commentCount;
     }
@@ -71,5 +83,13 @@ public class NflPosts {
 
     public void setShareCount(Integer shareCount) {
         this.shareCount = shareCount;
+    }
+
+    public String getPostContent() {
+        return postContent;
+    }
+
+    public void setPostContent(String postContent) {
+        this.postContent = postContent == null ? null : postContent.trim();
     }
 }

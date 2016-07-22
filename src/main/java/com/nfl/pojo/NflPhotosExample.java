@@ -235,66 +235,6 @@ public class NflPhotosExample {
             return (Criteria) this;
         }
 
-        public Criteria andAlbumIdIsNull() {
-            addCriterion("album_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdIsNotNull() {
-            addCriterion("album_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdEqualTo(Integer value) {
-            addCriterion("album_id =", value, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdNotEqualTo(Integer value) {
-            addCriterion("album_id <>", value, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdGreaterThan(Integer value) {
-            addCriterion("album_id >", value, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("album_id >=", value, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdLessThan(Integer value) {
-            addCriterion("album_id <", value, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdLessThanOrEqualTo(Integer value) {
-            addCriterion("album_id <=", value, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdIn(List<Integer> values) {
-            addCriterion("album_id in", values, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdNotIn(List<Integer> values) {
-            addCriterion("album_id not in", values, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdBetween(Integer value1, Integer value2) {
-            addCriterion("album_id between", value1, value2, "albumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlbumIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("album_id not between", value1, value2, "albumId");
-            return (Criteria) this;
-        }
-
         public Criteria andTsIsNull() {
             addCriterion("ts is null");
             return (Criteria) this;
@@ -355,73 +295,63 @@ public class NflPhotosExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andPostIdIsNull() {
+            addCriterion("post_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andPostIdIsNotNull() {
+            addCriterion("post_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andPostIdEqualTo(Integer value) {
+            addCriterion("post_id =", value, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andPostIdNotEqualTo(Integer value) {
+            addCriterion("post_id <>", value, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andPostIdGreaterThan(Integer value) {
+            addCriterion("post_id >", value, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andPostIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("post_id >=", value, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andPostIdLessThan(Integer value) {
+            addCriterion("post_id <", value, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andPostIdLessThanOrEqualTo(Integer value) {
+            addCriterion("post_id <=", value, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andPostIdIn(List<Integer> values) {
+            addCriterion("post_id in", values, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andPostIdNotIn(List<Integer> values) {
+            addCriterion("post_id not in", values, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andPostIdBetween(Integer value1, Integer value2) {
+            addCriterion("post_id between", value1, value2, "postId");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andPostIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("post_id not between", value1, value2, "postId");
             return (Criteria) this;
         }
     }

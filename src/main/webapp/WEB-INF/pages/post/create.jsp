@@ -9,8 +9,8 @@
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.0.0.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/post/post.js"></script>
-<script src="<%=request.getContextPath() %>/js/code.js"></script>
-<script src="<%=request.getContextPath() %>/js/basic.js"></script>
+<script src="<%=request.getContextPath()%>/js/code.js"></script>
+<script src="<%=request.getContextPath()%>/js/basic.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/semantic.css">
 
@@ -21,6 +21,12 @@
 	<div class="ui input">
 		<textarea id="content" name="posts" placeholder="写点什么..."></textarea>
 	</div>
+	<select id="post_status" class="ui dropdown">
+		<!-- <option value=""></option> -->
+		<option value="0">对所有人公开</option>
+		<option value="1">仅限好友公开</option>
+		<option value="2">私密</option>
+	</select>
 	<div class="ui button green" id="send">发表</div>
 	<div class="ui button" id="cancel">取消</div>
 </body>

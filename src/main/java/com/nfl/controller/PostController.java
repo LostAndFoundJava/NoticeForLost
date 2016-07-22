@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONObject;
 import com.nfl.pojo.NflPhotos;
 import com.nfl.pojo.NflPosts;
-import com.nfl.pojo.NflPostsCustom;
+
 import com.nfl.pojo.NflUsers;
 import com.nfl.serviceImp.PostServiceImp;
 import com.nfl.util.PostDic;
@@ -45,6 +45,7 @@ public class PostController {
 	@RequestMapping(value="/uploadpost",method=RequestMethod.POST ,produces = "application/json;charset=UTF-8" ) 
 	public @ResponseBody Object uploadPost(
 										@RequestParam("content") String content,
+										@RequestParam("post_status") Integer post_status,
 										//@RequestParam("post_type") String postType,
 										//*@RequestParam (value="pic")MultipartFile[]  pics,*/
 										HttpSession session){
@@ -60,7 +61,7 @@ public class PostController {
 		//要不要传时间？
 		System.out.println(content);
 		logger.info("start upload");
-		map=postService.newPost(user.getId(),content,PostDic.NEWPOST);
+		map=postService.newPost(user.getId(),content,post_status,PostDic.NEWPOST);
 		logger.info("uploaded");
 		System.out.println(content);
 		return map;

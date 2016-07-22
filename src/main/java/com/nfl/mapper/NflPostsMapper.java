@@ -2,7 +2,6 @@ package com.nfl.mapper;
 
 import com.nfl.pojo.NflPosts;
 import com.nfl.pojo.NflPostsExample;
-import com.nfl.pojo.NflPostsWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,25 +12,25 @@ public interface NflPostsMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(NflPostsWithBLOBs record);
+    int insert(NflPosts record);
 
-    int insertSelective(NflPostsWithBLOBs record);
+    int insertSelective(NflPosts record);
 
-    List<NflPostsWithBLOBs> selectByExampleWithBLOBs(NflPostsExample example);
+    List<NflPosts> selectByExampleWithBLOBs(NflPostsExample example);
 
     List<NflPosts> selectByExample(NflPostsExample example);
 
-    NflPostsWithBLOBs selectByPrimaryKey(Integer id);
+    NflPosts selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") NflPostsWithBLOBs record, @Param("example") NflPostsExample example);
+    int updateByExampleSelective(@Param("record") NflPosts record, @Param("example") NflPostsExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") NflPostsWithBLOBs record, @Param("example") NflPostsExample example);
+    int updateByExampleWithBLOBs(@Param("record") NflPosts record, @Param("example") NflPostsExample example);
 
     int updateByExample(@Param("record") NflPosts record, @Param("example") NflPostsExample example);
 
-    int updateByPrimaryKeySelective(NflPostsWithBLOBs record);
+    int updateByPrimaryKeySelective(NflPosts record);
 
-    int updateByPrimaryKeyWithBLOBs(NflPostsWithBLOBs record);
+    int updateByPrimaryKeyWithBLOBs(NflPosts record);
 
     int updateByPrimaryKey(NflPosts record);
 }
