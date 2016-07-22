@@ -32,11 +32,11 @@ CREATE TABLE `nfl_posts` (
   `user_id` int(11) NOT NULL,
   `post_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `post_content` longtext,
-  `post_status` int(2)NOT NULL DEFAULT 0,
+  `post_status` int(2)NOT NULL DEFAULT '0',
   `post_type` int(1) NOT NULL,
-  `comment_count` int(11) NOT NULL DEFAULT 0,
-  `like_count` int(11) NOT NULL DEFAULT 0,
-  `share_count` int(11) NOT NULL DEFAULT 0,
+  `comment_count` int(11) NOT NULL DEFAULT '0',
+  `like_count` int(11) NOT NULL DEFAULT '0',
+  `share_count` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
