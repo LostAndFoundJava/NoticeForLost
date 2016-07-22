@@ -16,8 +16,8 @@ public class HomePageController {
 	@RequestMapping("/")
 	public ModelAndView showHomePage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(session.getAttribute("user_email"));
-		if(session.getAttribute("user_email") != null){
+		System.out.println(session.getAttribute("user"));
+		if(session.getAttribute("user") != null){
 			mav.setViewName("redirect:/guide");
 			return mav;
 		}

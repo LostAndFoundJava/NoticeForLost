@@ -228,7 +228,7 @@ public class UserServiceImp implements UserService {
 			return ret;
 		}
 		ret.put("status", Property.SUCCESS_ACCOUNT_LOGIN);
-		ret.put("user_email", user.getUserEmail());
+		ret.put("user", user);
 		return ret;
 	}
 }

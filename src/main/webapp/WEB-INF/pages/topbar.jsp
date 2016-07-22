@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script src="<%=request.getContextPath() %>/js/jquery-3.0.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/register.js"></script>
+<script src="<%=request.getContextPath()%>/js/login.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/menu.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/font-awesome.css">
 <link href="<%=request.getContextPath()%>/css/bootstrap.min.css"
 	rel="stylesheet">
-<script src="<%=request.getContextPath() %>/js/jquery-3.0.0.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/register.js"></script>
-<script src="<%=request.getContextPath()%>/js/login.js"></script>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="nav-container container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -32,11 +33,11 @@
 							class="circular search link icon" id="search-btn"></i>
 					</form>
 				</li>
-				<c:if test="${not empty sessionScope.user_email}">
+				<c:if test="${not empty sessionScope.user}">
 					<li>
 						<%-- <a href='<c:url value="/user/${sessionScope.user.id }"></c:url>'>${sessionScope.user.user_name }</a> --%>
 						<div class="ui simple dropdown item">
-							${sessionScope.user.user_name } <i class="dropdown icon"></i>
+							${sessionScope.user.userName } <i class="dropdown icon"></i>
 							<div class="ui vertical menu">
 								<a class="item" href="<c:url value="/notifications/comment" />">
 									评论
@@ -58,14 +59,14 @@
 					
 					<li>
 						
-						<a target="_blank" href="#" class="btn btn-default">
+						<a target="_blank" href="post/create" class="btn btn-default">
   							<i class="fa fa-pencil-square-o fa-stack-2x" aria-hidden="true"></i>
 						</a>
 					
 </li>
 
 				</c:if>
-				<c:if test="${empty sessionScope.user_email}">
+				<c:if test="${empty sessionScope.user}">
 					<li><a href='<c:url value="/account/register"></c:url>'>注册</a></li>
 					<li></li>
 					<%-- <li><a href='<c:url value="/account/login"></c:url>'>登录</a></li> --%>

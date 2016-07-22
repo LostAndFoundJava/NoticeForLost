@@ -42,7 +42,7 @@ public class AccountController {
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(HttpSession session) {
-		if(session.getAttribute("user_email")!=null)
+		if(session.getAttribute("user")!=null)
 			return "redirect:/guide";
         return "account/register";
     }
@@ -97,12 +97,12 @@ public class AccountController {
 	@RequestMapping("/activation/mail/send")
 	public ModelAndView activation(@RequestParam("email") String email, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		NflUsers user=(NflUsers)session.getAttribute("user");
 		//如果已登入，跳转到首页
-		if(session.getAttribute("user_email")!=null){
+		if(user!=null){
 			mav.setViewName("redirect:/guide");
 			return mav;			
 		}
-		NflUsers user=userService.findByEmail(email);
 		if(user.getUserStatus()==UserDic.STATUS_USER_NORMAL){
 			mav.setViewName("account/login");
 			return mav;
@@ -138,8 +138,8 @@ public class AccountController {
 		Map<String, Object> ret = userService.login(email, password);
 		String status = (String) ret.get("status");
 		if (Property.SUCCESS_ACCOUNT_LOGIN.equals(status)) {
-			session.setAttribute("user_email",ret.get("user_email"));
-			session.setAttribute("user_name",ret.get("user_name"));
+			session.setAttribute("user",ret.get("user"));
+			//session.setAttribute("user_name",ret.get("user_name"));
 		}
 		return ret;
 	}

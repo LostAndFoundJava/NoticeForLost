@@ -17,16 +17,6 @@ public class NflPosts {
 
     private Integer shareCount;
     
-    private String photoid;
-    
-    public String getPhotoid() {
-		return photoid;
-	}
-
-	public void setPhotoid(String photoid) {
-		this.photoid = photoid;
-	}
-
 	public Integer getId() {
         return id;
     }
