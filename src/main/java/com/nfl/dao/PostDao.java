@@ -13,7 +13,7 @@ public class PostDao {
 	private NflPostsMapper postMapper;
 	
 	public int savePost(NflPosts post){
-		int postId=postMapper.insert(post);
+		int postId=postMapper.insertSelective(post);
 		return postId;
 	}
 }
