@@ -79,7 +79,7 @@ public class PostController {
 	public @ResponseBody NflPostsPanel getPost(
 									@PathVariable String postId) throws Exception{
 		logger.info("load the post detail");
-		NflPostsPanel post=postService.getPost(postId);
+		NflPostsPanel post=postService.getPost(postId); 
 		return post;
 	}
 	
