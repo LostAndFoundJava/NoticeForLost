@@ -1,6 +1,7 @@
 package com.nfl.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -11,6 +12,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONObject;
 import com.nfl.pojo.NflPhotos;
 import com.nfl.pojo.NflPosts;
-
+import com.nfl.pojo.NflPostsPanel;
 import com.nfl.pojo.NflUsers;
 import com.nfl.serviceImp.PostServiceImp;
 import com.nfl.util.PostDic;
@@ -59,11 +61,26 @@ public class PostController {
 			return map;
 		//-------
 		//要不要传时间？
-		System.out.println(content);
 		logger.info("start upload");
 		map=postService.newPost(user.getId(),content,post_status,PostDic.NEWPOST);
 		logger.info("uploaded");
 		System.out.println(content);
 		return map;
 	}
+	
+	/*
+	 * 显示一个帖子具体的内容，这是一个单独的页面
+	 * 一个帖子内容，发帖的时间，评论，评论的时间，评论的人的信息
+	 * 发帖者的头像，用户名
+	 * tag
+	 * 
+	 */
+	@RequestMapping(value="/{postId}",method=RequestMethod.GET)
+	public @ResponseBody NflPostsPanel getPost(
+									@PathVariable String postId) throws Exception{
+		logger.info("load the post detail");
+		NflPostsPanel post=postService.getPost(postId);
+		return post;
+	}
+	
 }

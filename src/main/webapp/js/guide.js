@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$('#ok').live('click', function(){
 		$(this).addClass('loading');
 		$.ajax({
-			url: basePath + '/guide/ok',
+			url: basePath + '/flow/ok',
 			type: 'GET',
 			dataType: 'json'
 		})

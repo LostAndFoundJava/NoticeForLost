@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nfl.mapper.NflPostPanelMapper" >
+		<!-- 订单查询关联用户的resultMap
+	将整个查询的结果映射到cn.itcast.mybatis.po.Orders中
+	 -->
+	<resultMap type="com.nfl.pojo.NflPostsPanel" id="PostsPanelMap">
+		<!-- 配置映射的日志的映射-->
+		<!-- id：指定查询列中的唯 一标识，日志信息的中的唯 一标识，如果有多个列组成唯一标识，配置多个id
+			column：订单信息的唯 一标识 列
+			property：订单信息的唯 一标识 列所映射到Orders中哪个属性
+		  -->
+		<id column="id" property="id"/>
+		<result column="post_ts" property="postTs"/>
+		<result column="post_content" property="postContent"/>
+		<result column="post_status" property="postStatus"/>
+		<result column="comment_count" property="commentCount"/>
+		<result column="like_count" property="likeCount"/>
+		<result column="share_count" property="shareCount"/>
+    	<result column="post_type" property="postType"/>
+   		<result column="topic_id" property="topicId" />
+
+		<!-- 配置映射的关联的用户信息 -->
+		<!-- association：用于映射关联查询单个对象的信息
+		property：要将关联查询的用户信息映射到Posts中哪个属性
+		 -->
+		<association property="user"  javaType="com.nfl.pojo.NflUsers">
+			<!-- id：关联查询用户的唯 一标识
+			column：指定唯 一标识用户信息的列
+			javaType：映射到NflUsers的哪个属性
+			 -->
+			<id column="id" property="id"/>
+			<result column="user_name" property="userName"/>
+			<result column="user_avatar" property="userAvatar"/>
+    <result column="user_email" property="userEmail"  />
+    <result column="user_phone" property="userPhone" />
+    <result column="user_pwd" property="userPwd" />
+    <result column="user_registered_date" property="userRegisteredDate" />
+    <result column="user_status" property="userStatus" />
+    <result column="user_activationKey" property="userActivationkey" />
+    <result column="user_desc" property="userDesc" />
+    <result column="resetpwd_key" property="resetpwdKey" />
+		</association>
+
+		<association property="topic" javaType="com.nfl.pojo.NflTopics">
+			<id column="id" property="id"/>
+			<result column="topic_name" property="topicName"/>
+    		<result column="add_ts" property="addTs" />
+   			 <result column="count" property="count" />
+		</association> 
+</resultMap>	
+	<select id="findPostUserAndTopic" resultMap="PostsPanelMap" parameterType="Integer">
+		select 	
+		 		nfl_posts.post_ts,
+		 		nfl_posts.post_content,
+		 		nfl_posts.post_status,
+		 		nfl_posts.comment_count,
+		 		nfl_posts.like_count,
+		 		nfl_posts.share_count ,
+		 		nfl_topics.topic_name,
+		 		 nfl_users.user_name , 
+		 		 nfl_users.user_avatar,
+		 		 nfl_posts.id 
+		 	from 
+		 		 nfl_users, 
+		 		 nfl_posts  
+		 	right outer join 
+		 		nfl_topics 
+		 	on 	
+		 		`nfl_posts`.`topic_id`=`nfl_topics`.`id` 
+		 	where 
+		 		nfl_posts.`id`=#{id}
+		 	and 
+		 		nfl_users.id=nfl_posts.user_id
+		 		
+	</select>
+	
+</mapper>

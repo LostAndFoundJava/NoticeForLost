@@ -18,7 +18,7 @@ public class HomePageController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(session.getAttribute("user"));
 		if(session.getAttribute("user") != null){
-			mav.setViewName("redirect:/guide");
+			mav.setViewName("redirect:/flow");
 			return mav;
 		}
 		mav.setViewName("welcome");
@@ -26,10 +26,10 @@ public class HomePageController {
 		
 	}
 	
-	@RequestMapping("/guide")
-	public ModelAndView guide(HttpSession session){
+	@RequestMapping("/flow")
+	public ModelAndView flow(HttpSession sesßsion){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("guide");
+		mav.setViewName("flow");
 		return mav;
 	}
 }

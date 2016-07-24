@@ -19,6 +19,8 @@ public class NflPosts {
 
     private Integer shareCount;
 
+    private Integer topicId;
+
     private String postContent;
 
     public Integer getId() {
@@ -83,6 +85,14 @@ public class NflPosts {
 
     public void setShareCount(Integer shareCount) {
         this.shareCount = shareCount;
+    }
+
+    public Integer getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(Integer topicId) {
+        this.topicId = topicId;
     }
 
     public String getPostContent() {

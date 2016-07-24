@@ -43,7 +43,7 @@ public class AccountController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(HttpSession session) {
 		if(session.getAttribute("user")!=null)
-			return "redirect:/guide";
+			return "redirect:/flow";
         return "account/register";
     }
 
@@ -74,7 +74,7 @@ public class AccountController {
 		}
 		if (Property.SUCCESS_ACCOUNT_ACTIVATION.equals(status)
 				|| Property.ERROR_ACCOUNT_EXIST.equals(status)) {
-			mav.setViewName("redirect:/guide");
+			mav.setViewName("redirect:/flow");
 			//这里和搜索有关系
 //			NflUsers user = userService.findByEmail(email);
 //			session.setAttribute("user", user);
@@ -100,7 +100,7 @@ public class AccountController {
 		NflUsers user=(NflUsers)session.getAttribute("user");
 		//如果已登入，跳转到首页
 		if(user!=null){
-			mav.setViewName("redirect:/guide");
+			mav.setViewName("redirect:/flow");
 			return mav;			
 		}
 		if(user.getUserStatus()==UserDic.STATUS_USER_NORMAL){
