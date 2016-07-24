@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.nfl.pojo.NflPhotos;
@@ -76,11 +77,20 @@ public class PostController {
 	 * 
 	 */
 	@RequestMapping(value="/{postId}",method=RequestMethod.GET)
+	public ModelAndView jumpToDetail(@PathVariable String postId){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("postId",postId);
+		mav.setViewName("post/postShow");
+		return mav;
+	}
+	
+	
+	
+	@RequestMapping(value="/getPostDetail/{postId}",method=RequestMethod.GET)
 	public @ResponseBody NflPostsPanel getPost(
 									@PathVariable String postId) throws Exception{
 		logger.info("load the post detail");
 		NflPostsPanel post=postService.getPost(postId); 
 		return post;
 	}
-	
 }

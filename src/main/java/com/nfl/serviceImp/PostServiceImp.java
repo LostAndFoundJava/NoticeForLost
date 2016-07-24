@@ -64,12 +64,13 @@ public class PostServiceImp implements PostService {
 		if(posts.size()>1){
 			throw new Exception("wrong query reslut!");
 		}
-		nflRe=commentDao.queryCommentsRetionWithUsersByPostId(intPostId);
-		if(nflRe!=null || nflRe.size()!=0){
-			lastComment=nflRe.get(0);
-		}
 		post=posts.get(0);
-		post.setLastCommentUser(lastComment.getUser());
+		nflRe=commentDao.queryCommentsRetionWithUsersByPostId(intPostId);
+		if(nflRe.size()!=0){
+			lastComment=nflRe.get(0);
+			post.setLastCommentUser(lastComment.getUser());
+		}
+		
 		return post;
 	}
 	
