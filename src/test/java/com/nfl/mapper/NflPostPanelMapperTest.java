@@ -33,8 +33,8 @@ public class NflPostPanelMapperTest {
        SqlSession sqlSession = sqlSessionFactory.openSession();  
        try {  
            NflPostPanelMapper post=sqlSession.getMapper(NflPostPanelMapper.class);
-          NflPostsPanel pan= post.findPostUserAndTopic(Integer.valueOf(1));
-          System.out.println(pan.getPost_userName());
+          NflPostsPanel pan= (NflPostsPanel) post.findPostUserAndTopic(Integer.valueOf(1));
+          System.out.println(pan.getPostUserName());
        } finally {  
            sqlSession.close();  
        }  
