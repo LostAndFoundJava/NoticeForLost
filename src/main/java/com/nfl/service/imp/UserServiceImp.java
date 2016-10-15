@@ -1,4 +1,4 @@
-package com.nfl.serviceImp;
+package com.nfl.service.imp;
 
 import java.net.URLEncoder;
 import java.util.Date;

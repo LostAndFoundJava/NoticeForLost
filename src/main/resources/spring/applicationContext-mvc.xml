@@ -11,21 +11,19 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
        default-lazy-init="true">
     <context:component-scan base-package="com.nfl.controller"/>
-    <context:component-scan base-package="com.nfl.dao"/>
-    <context:component-scan base-package="com.nfl.dto"/>
-    <context:component-scan base-package="com.nfl.service"/>
-    <context:component-scan base-package="com.nfl.serviceImp"/>
-    <context:component-scan base-package="com.nfl.search"/>
-    
+
     <mvc:resources location="/WEB-INF/pages/" mapping="/pages/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
 	<mvc:resources location="/css/" mapping="/css/**"/> 
-	<mvc:resources location="/" mapping="/**"/>
+	<mvc:resources location="/fonts" mapping="/**"/>
+	<mvc:resources location="/img" mapping="/**"/>
+
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
     <!-- 默认的注解映射的支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">

@@ -1,11 +1,8 @@
 package com.nfl.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.json.JsonObject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
@@ -13,20 +10,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.nfl.pojo.NflPhotos;
-import com.nfl.pojo.NflPosts;
 import com.nfl.pojo.NflPostsPanel;
 import com.nfl.pojo.NflUsers;
-import com.nfl.serviceImp.PostServiceImp;
+import com.nfl.service.imp.PostServiceImp;
 import com.nfl.util.PostDic;
 
 @Controller

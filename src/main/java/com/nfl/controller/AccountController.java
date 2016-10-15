@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nfl.pojo.NflUsers;
 import com.nfl.pojo.NflUsersCustom;
 import com.nfl.service.MailService;
-import com.nfl.serviceImp.UserServiceImp;
+import com.nfl.service.imp.UserServiceImp;
 import com.nfl.util.Property;
 import com.nfl.util.UserDic;
 

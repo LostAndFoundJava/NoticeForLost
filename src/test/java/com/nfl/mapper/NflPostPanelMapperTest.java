@@ -14,10 +14,7 @@ import org.junit.Test;
 import com.nfl.pojo.NflPostsPanel;
 
 public class NflPostPanelMapperTest {
-	
-
- 
-    @Test  
+    @Test
     public void testInsert() {  
     	String resource = "spring/applicationContext.xml";
     	InputStream inputStream;

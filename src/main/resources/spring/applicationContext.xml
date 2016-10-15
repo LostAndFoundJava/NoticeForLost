@@ -10,12 +10,13 @@
        ">
       <!-- 加载springmvc -->
      <import resource="classpath:spring/applicationContext-mvc.xml" />
-     
+
+	<context:component-scan base-package="com.nfl.dao"/>
+	<context:component-scan base-package="com.nfl.service"/>
      <!-- 加载配置文件 :-->
      <!-- xmlns:context -->
      
     <context:property-placeholder location="classpath:property.properties" />
-
 
 	<!-- 数据源，使用dbcp -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

@@ -13,7 +13,7 @@ import com.nfl.pojo.NflUsers;
 @Controller
 public class HomePageController {
 	
-	@RequestMapping("/")
+	@RequestMapping("/welcome")
 	public ModelAndView showHomePage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(session.getAttribute("user"));
@@ -23,7 +23,6 @@ public class HomePageController {
 		}
 		mav.setViewName("welcome");
 		return mav;
-		
 	}
 	
 	@RequestMapping("/flow")
