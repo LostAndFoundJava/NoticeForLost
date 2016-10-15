@@ -5,6 +5,7 @@
 *.ear
 *.log
 *.DS_Store
-
+*.idea
+*.iml
 /target
 /.settings/
