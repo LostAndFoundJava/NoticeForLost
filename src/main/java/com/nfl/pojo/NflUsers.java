@@ -2,9 +2,8 @@ package com.nfl.pojo;
 
 import java.util.Date;
 
-import com.nfl.search.Searchable;
 
-public class NflUsers implements Searchable{
+public class NflUsers {
     private Integer id;
 
     private String userName;
