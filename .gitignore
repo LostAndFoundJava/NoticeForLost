@@ -1,10 +1,12 @@
 *.class
+*.iml
+*.idea
 *.classpath
 # Package Files #
 *.war
 *.ear
 *.log
 *.DS_Store
-
+*.project
 /target
 /.settings/
