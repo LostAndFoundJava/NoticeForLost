@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nfl.pojo.NflUsers;
 
 @Controller
+
 public class HomePageController {
 	
 	@RequestMapping("/welcome")
