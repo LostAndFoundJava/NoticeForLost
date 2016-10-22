@@ -23,15 +23,7 @@ $(document).ready(function(){
 				//TODO 如果失败了应该怎么显示
 				//TODO 回显
 				alert(data.status);
-				
 			}
 		})
-		
-		
-			
 	});
-      
-	
-	
-	
 })

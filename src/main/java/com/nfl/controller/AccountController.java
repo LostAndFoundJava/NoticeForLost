@@ -1,29 +1,23 @@
 package com.nfl.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.nfl.pojo.NflUsers;
 import com.nfl.pojo.NflUsersCustom;
 import com.nfl.service.MailService;
 import com.nfl.service.imp.UserServiceImp;
 import com.nfl.util.Property;
 import com.nfl.util.UserDic;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/account")
@@ -41,7 +35,7 @@ public class AccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(HttpSession session) {
+    public String register(HttpSession session,Model model) {
 		if(session.getAttribute("user")!=null)
 			return "redirect:/flow";
         return "account/register";

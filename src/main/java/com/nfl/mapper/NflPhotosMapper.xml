@@ -3,7 +3,7 @@
 <mapper namespace="com.nfl.mapper.NflPhotosMapper" >
   <resultMap id="BaseResultMap" type="com.nfl.pojo.NflPhotos" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="key" property="key" jdbcType="VARCHAR" />
+    <result column="photokey" property="photokey" jdbcType="VARCHAR" />
     <result column="ts" property="ts" jdbcType="TIMESTAMP" />
     <result column="post_id" property="postId" jdbcType="INTEGER" />
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, key, ts, post_id
+    id, photokey, ts, post_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nfl.pojo.NflPhotosExample" >
     select
@@ -98,20 +98,20 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.nfl.pojo.NflPhotos" >
-    insert into nfl_photos (id, key, ts, 
+  <insert id="insert" parameterType="com.nfl.pojo.NflPhotos" keyProperty="id" useGeneratedKeys="true">
+    insert into nfl_photos (id, photokey, ts, 
       post_id)
-    values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{ts,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{photokey,jdbcType=VARCHAR}, #{ts,jdbcType=TIMESTAMP}, 
       #{postId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPhotos" >
+  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPhotos" useGeneratedKeys="true" keyProperty="id" >
     insert into nfl_photos
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="key != null" >
-        key,
+      <if test="photokey != null" >
+        photokey,
       </if>
       <if test="ts != null" >
         ts,
@@ -124,8 +124,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="key != null" >
-        #{key,jdbcType=VARCHAR},
+      <if test="photokey != null" >
+        #{photokey,jdbcType=VARCHAR},
       </if>
       <if test="ts != null" >
         #{ts,jdbcType=TIMESTAMP},
@@ -147,8 +147,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.key != null" >
-        key = #{record.key,jdbcType=VARCHAR},
+      <if test="record.photokey != null" >
+        photokey = #{record.photokey,jdbcType=VARCHAR},
       </if>
       <if test="record.ts != null" >
         ts = #{record.ts,jdbcType=TIMESTAMP},
@@ -164,7 +164,7 @@
   <update id="updateByExample" parameterType="map" >
     update nfl_photos
     set id = #{record.id,jdbcType=INTEGER},
-      key = #{record.key,jdbcType=VARCHAR},
+      photokey = #{record.photokey,jdbcType=VARCHAR},
       ts = #{record.ts,jdbcType=TIMESTAMP},
       post_id = #{record.postId,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -174,8 +174,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.nfl.pojo.NflPhotos" >
     update nfl_photos
     <set >
-      <if test="key != null" >
-        key = #{key,jdbcType=VARCHAR},
+      <if test="photokey != null" >
+        photokey = #{photokey,jdbcType=VARCHAR},
       </if>
       <if test="ts != null" >
         ts = #{ts,jdbcType=TIMESTAMP},
@@ -188,7 +188,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nfl.pojo.NflPhotos" >
     update nfl_photos
-    set key = #{key,jdbcType=VARCHAR},
+    set photokey = #{photokey,jdbcType=VARCHAR},
       ts = #{ts,jdbcType=TIMESTAMP},
       post_id = #{postId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

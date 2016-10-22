@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nfl.pojo.NflPostsPanel;
@@ -26,8 +27,7 @@ import com.nfl.util.PostDic;
 public class PostController {
 	@Autowired
 	public PostServiceImp postService;
-	
-	
+
 	private final Logger logger = LogManager.getLogger(PostController.class);
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
@@ -42,7 +42,7 @@ public class PostController {
 										@RequestParam("content") String content,
 										@RequestParam("post_status") Integer post_status,
 										//@RequestParam("post_type") String postType,
-										//*@RequestParam (value="pic")MultipartFile[]  pics,*/
+										@RequestParam (value="image")MultipartFile image,
 										HttpSession session){
 		
 		//1.将post存入post对象
@@ -55,7 +55,7 @@ public class PostController {
 		//-------
 		//要不要传时间？
 		logger.info("start upload");
-		map=postService.newPost(user.getId(),content,post_status,PostDic.NEWPOST);
+		map=postService.newPost(user.getId(),content,post_status,PostDic.NEWPOST,image);
 		logger.info("uploaded");
 		System.out.println(content);
 		return map;

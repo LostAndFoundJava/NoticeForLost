@@ -5,7 +5,7 @@ import java.util.Date;
 public class NflPhotos {
     private Integer id;
 
-    private String key;
+    private String photokey;
 
     private Date ts;
 
@@ -20,11 +20,11 @@ public class NflPhotos {
     }
 
     public String getKey() {
-        return key;
+        return photokey;
     }
 
     public void setKey(String key) {
-        this.key = key == null ? null : key.trim();
+        this.photokey = key == null ? null : key.trim();
     }
 
     public Date getTs() {

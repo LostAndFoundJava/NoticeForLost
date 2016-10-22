@@ -138,7 +138,7 @@
       #{likeCount,jdbcType=INTEGER}, #{shareCount,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, 
       #{postContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPosts" >
+  <insert id="insertSelective" parameterType="com.nfl.pojo.NflPosts" keyProperty="id" useGeneratedKeys="true">
     insert into nfl_posts
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

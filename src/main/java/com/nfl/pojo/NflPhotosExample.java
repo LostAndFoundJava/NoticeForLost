@@ -165,73 +165,73 @@ public class NflPhotosExample {
             return (Criteria) this;
         }
 
-        public Criteria andKeyIsNull() {
-            addCriterion("key is null");
+        public Criteria andPhotokeyIsNull() {
+            addCriterion("photokey is null");
             return (Criteria) this;
         }
 
-        public Criteria andKeyIsNotNull() {
-            addCriterion("key is not null");
+        public Criteria andPhotokeyIsNotNull() {
+            addCriterion("photokey is not null");
             return (Criteria) this;
         }
 
-        public Criteria andKeyEqualTo(String value) {
-            addCriterion("key =", value, "key");
+        public Criteria andPhotokeyEqualTo(String value) {
+            addCriterion("photokey =", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotEqualTo(String value) {
-            addCriterion("key <>", value, "key");
+        public Criteria andPhotokeyNotEqualTo(String value) {
+            addCriterion("photokey <>", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyGreaterThan(String value) {
-            addCriterion("key >", value, "key");
+        public Criteria andPhotokeyGreaterThan(String value) {
+            addCriterion("photokey >", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyGreaterThanOrEqualTo(String value) {
-            addCriterion("key >=", value, "key");
+        public Criteria andPhotokeyGreaterThanOrEqualTo(String value) {
+            addCriterion("photokey >=", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLessThan(String value) {
-            addCriterion("key <", value, "key");
+        public Criteria andPhotokeyLessThan(String value) {
+            addCriterion("kephotokeyy <", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLessThanOrEqualTo(String value) {
-            addCriterion("key <=", value, "key");
+        public Criteria andPhotokeyLessThanOrEqualTo(String value) {
+            addCriterion("photokey <=", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLike(String value) {
-            addCriterion("key like", value, "key");
+        public Criteria andPhotokeyLike(String value) {
+            addCriterion("photokey like", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotLike(String value) {
-            addCriterion("key not like", value, "key");
+        public Criteria andPhotoKeyNotLike(String value) {
+            addCriterion("photokey not like", value, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyIn(List<String> values) {
-            addCriterion("key in", values, "key");
+        public Criteria andPhotokeyIn(List<String> values) {
+            addCriterion("photokey in", values, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotIn(List<String> values) {
-            addCriterion("key not in", values, "key");
+        public Criteria andphotokeyNotIn(List<String> values) {
+            addCriterion("photokey not in", values, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyBetween(String value1, String value2) {
-            addCriterion("key between", value1, value2, "key");
+        public Criteria andPhotokeyBetween(String value1, String value2) {
+            addCriterion("photokey between", value1, value2, "photokey");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotBetween(String value1, String value2) {
-            addCriterion("key not between", value1, value2, "key");
+        public Criteria andPhotokeyNotBetween(String value1, String value2) {
+            addCriterion("photokey not between", value1, value2, "photokey");
             return (Criteria) this;
         }
 
